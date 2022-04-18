@@ -1,0 +1,18 @@
+<section class='movie__item'>
+  <%= link_to "<-- Revenir en arrière", movies_path, class: 'movie__item__back' %>
+  <div class="movie__item__backdrop" style="background: url(<%= "https://image.tmdb.org/t/p/w1400_and_h450_face/#{@movie["backdrop_path"]}" %>)"></div>
+  <div class="movie__item__header" style='background-image: radial-gradient(circle at 20% 50%, rgba(12.94%, 14.9%, 22.75%, .88) 0%, rgba(12.94%, 14.9%, 22.75%, .78) 100%);'>
+    <%= image_tag("https://image.tmdb.org/t/p/original/#{@movie["poster_path"]}", class: 'movie__item__header__poster') %>
+    <div class="movie__item__header__content">
+      <h1 class='movie__item__header__content__title'><%= @movie['title'] %></h1>
+      <% if @library %>
+        <%= button_to 'Remove from library', library_path(@library['id']), method: :delete, class: 'movie__item__header__content__button' %>
+      <% else %>
+        <%= button_to "Add to library", library_index_path, method: :post, params: {title: @movie['title'], overview: @movie['overview'], poster_path: @movie['poster_path'], backdrop_path: @movie['backdrop_path'], db_id: @movie['id']}, class: 'movie__item__header__content__button' %>
+      <% end %>
+      <% date = Date.strptime(@movie['release_date'], '%Y-%m-%d') %>
+      <p class='movie__item__header__content__release'>Date de sortie: <%= localize(date, format: '%B %Y') %></p>
+      <p class='movie__item__header__content__overview'><%= @movie['overview'] %></p>
+    </div>
+  </div>
+</section>

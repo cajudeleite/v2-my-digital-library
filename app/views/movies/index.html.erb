@@ -1,0 +1,27 @@
+<section class='movie'>
+  <h1>Search Movies</h1>
+  <%= link_to "Ma liste", library_index_path %>
+  <%= form_tag movies_path, :method => "get" do %>
+    <%= text_field_tag :search, params[:search], :placeholder => "Movie name:" %>
+    <%= submit_tag("Search", name: nil) %>
+  <% end %>
+    <% if @movies.length > 0 %>
+      <div class="movie__cards">
+        <% @movies.each do |movie| %>
+          <div class="movie__cards__card">
+            <% if defined?(movie.id) %>
+              <%= link_to image_tag("https://image.tmdb.org/t/p/original/#{movie.poster_path}", class: "movie__cards__card__image"), movie_path(movie.id) %>
+            <% elsif defined?(movie['id']) %>
+              <%= link_to image_tag("https://image.tmdb.org/t/p/original/#{movie['poster_path']}", class: "movie__cards__card__image"), movie_path(movie['id']) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <% if params[:search] %>
+        <p>No results found for <%= params[:search] %></p>
+      <% else %>
+        <p>No movies found</p>
+      <% end %>
+    <% end %>
+</section>
