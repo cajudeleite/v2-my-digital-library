@@ -1,7 +1,7 @@
 <section class='movie__item'>
-  <%= link_to "<-- Revenir en arrière", movies_path, class: 'movie__item__back' %>
   <div class="movie__item__backdrop" style="background: url(<%= "https://image.tmdb.org/t/p/w1400_and_h450_face/#{@movie["backdrop_path"]}" %>)"></div>
-  <div class="movie__item__header" style='background-image: radial-gradient(circle at 20% 50%, rgba(12.94%, 14.9%, 22.75%, .88) 0%, rgba(12.94%, 14.9%, 22.75%, .78) 100%);'>
+  <% background_color = @library ? '21, 89, 72' : '181, 3, 17' %>
+  <div class="movie__item__header" style="background-image: radial-gradient(circle at 20% 50%, rgba(<%= background_color %>, .88) 0%, rgba(<%= background_color %>, .78) 100%);">
     <%= image_tag("https://image.tmdb.org/t/p/original/#{@movie["poster_path"]}", class: 'movie__item__header__poster') %>
     <div class="movie__item__header__content">
       <h1 class='movie__item__header__content__title'><%= @movie['title'] %></h1>

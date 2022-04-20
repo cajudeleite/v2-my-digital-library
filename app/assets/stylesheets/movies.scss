@@ -2,8 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+@import './vars';
+
 .movie {
   width: 100%;
+  position: relative;
+  top: $navbar-height;
+  &__title {
+    font-size: 2rem;
+    font-family: $title-font;
+    background-color: $red;
+    color: $background-color;
+    text-align: center;
+    margin: 0;
+    padding: 1rem 0;
+  }
+  &__search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $red;
+    padding: 1rem 0;
+    margin: 0;
+    &__input {
+      width: 50%;
+      height: 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: $background-color;
+      font-size: 1.5rem;
+      padding: 0 1rem;
+    }
+    &__submit {
+      border: none;
+      border-radius: 0.5rem;
+      background-color: $light-green;
+      color: $red;
+      font-size: 1rem;
+      margin-left: 1rem;
+      padding: 0.5rem 1.5rem;
+      &:hover {
+        background-color: $green;
+      }
+    }
+  }
   &__cards {
     display: flex;
     flex-wrap: wrap;
@@ -27,6 +70,8 @@
     }
   }
   &__item {
+    position: relative;
+    top: $navbar-height;
     &__back {
       position: absolute;
       font-size: 1rem;
@@ -86,5 +131,47 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movie {
+    &__cards {
+      &__card {
+        width: calc(50% - 1rem);
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
+    }
+    &__item {
+      &__backdrop {
+        height: 100%;
+      }
+      &__header {
+        flex-direction: column;
+        height: 100%;
+        &__poster {
+          display: none;
+        }
+        &__content {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .movie {
+    &__cards {
+      &__card {
+        width: calc(100% - 1rem);
+        &:nth-child(n) {
+          margin-right: 0;
+        }
+      }
+    }
+
   }
 }

@@ -1,0 +1,16 @@
+<% def text_color ()
+    if current_page?(library_index_path)
+      text_color = '#155948'
+    else
+      text_color = '#b50311'
+    end
+  end %>
+
+<section class="navbar">
+  <h1 class="navbar__logo" style="color: <%= text_color %>">La Liste de Nini</h1>
+  <div class="navbar__items">
+    <%= link_to 'Films', movies_path, class: 'navbar__items__item', style: "color: #{text_color}" %>
+    <%= link_to 'Séries', movies_path, class: 'navbar__items__item', style: "color: #{text_color}" %>
+    <%= link_to 'Ma liste', library_index_path, class: 'navbar__items__item', style: "color: #{text_color}" %>
+  </div>
+</section>

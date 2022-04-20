@@ -1,9 +1,8 @@
 <section class='movie'>
-  <h1>Search Movies</h1>
-  <%= link_to "Ma liste", library_index_path %>
-  <%= form_tag movies_path, :method => "get" do %>
-    <%= text_field_tag :search, params[:search], :placeholder => "Movie name:" %>
-    <%= submit_tag("Search", name: nil) %>
+  <h1 class='movie__title'>Ajouter des films</h1>
+  <%= form_tag movies_path, :method => "get", class: 'movie__search' do %>
+    <%= text_field_tag :search, params[:search], :placeholder => "Movie name:", class: 'movie__search__input' %>
+    <%= submit_tag("Search", name: nil, class: 'movie__search__submit') %>
   <% end %>
     <% if @movies.length > 0 %>
       <div class="movie__cards">
